@@ -4,7 +4,7 @@
    <meta charset="utf-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1">
-   <title>Registro</title>
+   <title>SANEY - Registro</title>
    <link rel="stylesheet" href="css/bootstrap.min.css">
    <link rel="stylesheet" href="css/style.css">
    <link rel="stylesheet" href="css/responsive.css">
@@ -29,7 +29,16 @@
                      <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav ml-auto">
                            <li class="nav-item active">
-                              <a class="nav-link" href="login.php">Home</a>
+                              <a class="nav-link" href="index.php">Home</a>
+                           </li>
+                           <li class="nav-item">
+                              <a class="nav-link" href="#">Quienes somos</a>
+                           </li>
+                           <li class="nav-item">
+                              <a class="nav-link" href="contacto.php">Contactos</a>
+                           </li>
+                           <li class="nav-item">
+                              <a class="nav-link" href="login.php"><span class="yellow">Login</span></a>
                            </li>
                         </ul>
                      </div>
@@ -39,43 +48,41 @@
          </div>
       </div>
    </header>
-   <div class="container mt-5">
-      <h2 class="text-center">Registro</h2>
-      <form id="request" action="trasaccion/trasaction.php" method="POST" class="mt-4">
+   <div class="container" style="max-width: 400px; margin-top: 8%;">
+      <h2 class="text-center">Registro de Usuario</h2>
+
+      <?php
+      session_start();
+      if (isset($_SESSION['error'])) {
+         echo "<div class='alert alert-danger text-center'>" . $_SESSION['error'] . "</div>";
+         unset($_SESSION['error']);
+      }
+      ?>
+
+      <form action="inicio/validarRE.php" method="post">
          <div class="form-group">
-            <label for="nombre">Nombre Completo:</label>
-            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese su nombre completo" required>
+            <label>Nombre:</label>
+            <input type="text" name="nombre" class="form-control" value="<?php echo isset($_SESSION['nombre']) ? $_SESSION['nombre'] : ''; ?>" required>
          </div>
+
          <div class="form-group">
-            <label for="tipoDoc">Tipo de Documento:</label>
-            <select class="form-control" id="tipoDoc" name="TipoDoc" required>
-               <option value="CC">Cédula de Ciudadanía</option>
-               <option value="CE">Cédula de Extranjería</option>
-            </select>
+            <label>Apellido:</label>
+            <input type="text" name="apellido" class="form-control" value="<?php echo isset($_SESSION['apellido']) ? $_SESSION['apellido'] : ''; ?>" required>
          </div>
+
          <div class="form-group">
-            <label for="documento">Número de Identidad:</label>
-            <input type="number" class="form-control" id="documento" name="documento" placeholder="Ingrese su número de identificación" required>
+            <label>Usuario:</label>
+            <input type="text" name="usuario" class="form-control" value="<?php echo isset($_SESSION['usuario']) ? $_SESSION['usuario'] : ''; ?>" required>
          </div>
+
          <div class="form-group">
-            <label for="fecha_na">Fecha de Nacimiento:</label>
-            <input type="date" class="form-control" id="fecha_na" name="fecha_na" required>
+            <label>Contraseña:</label>
+            <input type="password" name="contraseña" class="form-control" required>
          </div>
-         <div class="form-group">
-            <label for="direccion">Dirección:</label>
-            <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Ingrese su dirección" required>
-         </div>
-         <div class="text-center">
-            <button type="submit" class="btn btn-success">Enviar</button>
-            <button type="reset" class="btn btn-danger">Borrar</button>
-         </div>
+
+         <button type="submit" class="btn btn-success btn-block">Registrar</button>
       </form>
    </div>
-   <footer class="text-center mt-5 p-3 bg-dark text-white">
-      <p>&copy; 2025 SANEY. Todos los derechos reservados.</p>
-   </footer>
-   <script src="js/jquery.min.js"></script>
-   <script src="js/popper.min.js"></script>
-   <script src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+

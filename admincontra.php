@@ -53,7 +53,7 @@ if (isset($_GET['error'])) {
 </header>
 
 <body>
-   <form action="validarADMIN.php" method="GET" style="text-align: center ; margin: 8% 20px;">
+<form action="validarADMIN.php" method="POST" style="text-align: center ; margin: 8% 20px;">
       <h1 class="h1" style="color: black;">Inicio Administrador</h1>
       <p>Usuario</p><input type="text" placeholder="Ingrese su usuario" name="user">
       <p>password</p><input type="password" placeholder="Ingrese su contarseña" name="password"><br><br>

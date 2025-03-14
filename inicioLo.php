@@ -44,7 +44,7 @@
                         <div class="collapse navbar-collapse" id="navbarsExample04">
                         <ul class="navbar-nav mr-auto">
                               <li class="nav-item">
-                              <a class="nav-link" href="inicioLo.php">Administrar</a>
+                              <a class="nav-link" href="admincontra.php">Administrador</a>
                               </li>
                               <li class="nav-item">
                                  <a class="nav-link" href="crearPro.php">Crear Productos</a>
