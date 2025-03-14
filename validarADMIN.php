@@ -1,42 +1,58 @@
 <?php
-// Mostrar errores para depuración
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
+session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require "conexion.php";
     $con = conectar();
 
-    $user = $_POST['user'] ?? '';  
-    $password = $_POST['password'] ?? '';
+    $usuario = $_POST['usuario'];
+    $password = $_POST['password'];
 
-    // Verificar si los campos están vacíos
-    if (empty($user) || empty($password)) {
-        header("Location: admincontra.php?error=vacio");
+    // Función para validar usuario y obtener su nombre
+    function validarUsuario($conexion, $tabla, $usuario, $password) {
+        $stmt = $conexion->prepare("SELECT usuario, password FROM $tabla WHERE usuario = ?");
+        $stmt->bind_param("s", $usuario);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            if (password_verify($password, $row['password'])) {
+                return $row['usuario']; // Retorna el nombre de usuario si la contraseña es válida
+            }
+        }
+        return false;
+    }
+
+    // Validar en la tabla "useradmin"
+    $nombreAdmin = validarUsuario($con, "useradmin", $usuario, $password);
+    if ($nombreAdmin) {
+        $_SESSION['usuario'] = $nombreAdmin;
+        $_SESSION['rol'] = "admin";
+        echo "<script>
+                alert('Bienvenido Administrador: $nombreAdmin');
+                window.location.href = 'modificarBorrar.php'; 
+              </script>";
         exit();
     }
 
-    // Consulta segura con Prepared Statements
-    $stmt = $con->prepare("SELECT password FROM admin WHERE usuario = ?");
-    $stmt->bind_param("s", $user);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    // Validar en la tabla "usuarios"
+    $nombreUsuario = validarUsuario($con, "usuarios", $usuario, $password);
+    if ($nombreUsuario) {
+        $_SESSION['usuario'] = $nombreUsuario;
+        $_SESSION['rol'] = "usuario";
+        echo "<script>
+                alert('Bienvenido Usuario: $nombreUsuario');
+                window.location.href = 'inicioLo.php'; 
+              </script>";
+        exit();
+    }
 
-    if ($password === $hash) {  // O usa password_verify($password, $hash) si está encriptado
-        session_start();
-        $_SESSION['admin'] = $user;
-    
-        echo "<script>
-                alert('Bienvenido Administrador');
-                window.location.href = 'ModificarBorrar.php';
-              </script>";
-        exit();
-    } else {
-        echo "<script>
-                alert('Usuario o contraseña incorrectos');
-                window.location.href = 'admincontra.php';
-              </script>";
-        exit();
-    }    
+    // Si no se encontró en ninguna tabla
+    echo "<script>
+            alert('Usuario o contraseña incorrectos');
+            window.location.href = 'admincontra.php'; 
+          </script>";
+
+    $con->close();
 }
 ?>

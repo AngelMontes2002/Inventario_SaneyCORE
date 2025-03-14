@@ -44,7 +44,7 @@ $con = conectar();
                                     <li class="nav-item"><a class="nav-link" href="formularioemple.php">Crear Empleado</a></li>
                                     <li class="nav-item"><a class="nav-link" href="formularioAdmin.php">Crear Usuario Admin</a></li>
                                     <li class="nav-item"><a class="nav-link" href="verEmpleados.php">Ver lista de empleados</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="ModificarBorrar.php"><span class="yellow">Volver</span></a></li>
+                                    <li class="nav-item"><a class="nav-link" href="inicioLo.php"><span class="yellow">Volver</span></a></li>
                                     <li class="nav-item"><a class="nav-link" href="cerrar_sesion.php"><span class="yellow">Cerrar sesión</span></a></li>
                                 </ul>
                             </div>

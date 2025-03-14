@@ -29,17 +29,9 @@
                      <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav ml-auto">
                            <li class="nav-item active">
-                              <a class="nav-link" href="index.php">Home</a>
+                              <a class="nav-link" href="modificarBorrar.php">Home</a>
                            </li>
-                           <li class="nav-item">
-                              <a class="nav-link" href="#">Quienes somos</a>
-                           </li>
-                           <li class="nav-item">
-                              <a class="nav-link" href="contacto.php">Contactos</a>
-                           </li>
-                           <li class="nav-item">
-                              <a class="nav-link" href="login.php"><span class="yellow">Login</span></a>
-                           </li>
+                           
                         </ul>
                      </div>
                   </nav>
@@ -49,7 +41,7 @@
       </div>
    </header>
    <div class="container" style="max-width: 400px; margin-top: 8%;">
-      <h2 class="text-center">Registro de Usuario</h2>
+      <h2 class="text-center">Registro de Admin</h2>
 
       <?php
       session_start();
@@ -59,7 +51,7 @@
       }
       ?>
 
-      <form action="inicio/validarRE.php" method="post">
+      <form action="inicio/validarFormularioAdmin.php" method="post">
          <div class="form-group">
             <label>Nombre:</label>
             <input type="text" name="nombre" class="form-control" value="<?php echo isset($_SESSION['nombre']) ? $_SESSION['nombre'] : ''; ?>" required>
