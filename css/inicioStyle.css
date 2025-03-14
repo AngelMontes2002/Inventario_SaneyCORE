@@ -1,0 +1,25 @@
+body {
+    background: white;
+}
+.usu {
+    color: white;
+    margin: 50px 100px;
+    font-family: cursive;
+    font-size: 20px;
+}
+form {
+
+    background: #170b2a;
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 50%;
+    height: 300px;
+    margin: 10% 25%;
+    text-align: center;
+
+
+}
+.ti{
+    color: white;
+    font-family: cursive;
+}
