@@ -50,9 +50,6 @@
                                  <a class="nav-link" href="crearPro.php">Crear Productos</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="admincontra.php">Modificar y Borrar</a>
-                              </li>
-                              <li class="nav-item">
                                  <a class="nav-link" href="verProductos.php">Ver Productos</a>
                               </li>
                               <li class="nav-item">

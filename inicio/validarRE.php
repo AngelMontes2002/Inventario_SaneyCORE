@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->close();
 
         if ($ejecutar) {
-            echo "<script>alert('Registro exitoso. Bienvenido'); window.location='login.php';</script>";
+            echo "<script>alert('Registro exitoso. Bienvenido'); window.location='http://localhost/inventario_saneyCORE/login.php';</script>";
             exit();
         } else {
             echo "<script>alert('Error en el registro'); window.location='/inventario_saneyCORE/registro.php';</script>";

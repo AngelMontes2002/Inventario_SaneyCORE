@@ -43,6 +43,7 @@ $con = conectar();
                                 <ul class="navbar-nav mr-auto">
                                     <li class="nav-item"><a class="nav-link" href="formularioemple.php">Crear Empleado</a></li>
                                     <li class="nav-item"><a class="nav-link" href="formularioAdmin.php">Crear Usuario Admin</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="listaemple.php">Ver Usuarios</a></li>
                                     <li class="nav-item"><a class="nav-link" href="verEmpleados.php">Ver lista de empleados</a></li>
                                     <li class="nav-item"><a class="nav-link" href="inicioLo.php"><span class="yellow">Volver</span></a></li>
                                     <li class="nav-item"><a class="nav-link" href="cerrar_sesion.php"><span class="yellow">Cerrar sesión</span></a></li>
@@ -93,7 +94,7 @@ $con = conectar();
                     </thead>
                     <tbody>
                         <?php
-                        $conectar = mysqli_connect('localhost', 'root', '', 'inventario_saney');
+                        $conectar = mysqli_connect('localhost', 'root', '', 'inventario_saneyCORE');
                         if (!$conectar) {
                             die("Error en la conexión a la base de datos: " . mysqli_connect_error());
                         }
@@ -125,7 +126,7 @@ $con = conectar();
     <?php
     if (isset($_GET['borrar'])) {
         $borrar_id = $_GET['borrar'];
-        $conectar = mysqli_connect('localhost', 'root', '', 'inventario_saney');
+        $conectar = mysqli_connect('localhost', 'root', '', 'inventario_saneyCORE');
 
         if (!$conectar) {
             die("Error en la conexión a la base de datos: " . mysqli_connect_error());
