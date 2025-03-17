@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+// Cargar datos previos si hubo un error en el envío
+$form_data = $_SESSION['form_data'] ?? [];
+$error_message = $_SESSION['error_message'] ?? "";
+
+// Limpiar la sesión después de cargar los datos
+unset($_SESSION['error_message']);
+unset($_SESSION['form_data']);
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -24,38 +35,53 @@
          </nav>
       </div>
    </header>
+
    <section class="container mt-5">
       <div class="row">
          <div class="col-md-8 offset-md-2">
             <h2 class="text-center">Contacto</h2>
+
+            <!-- Mostrar alerta si hay error -->
+            <?php if (!empty($error_message)): ?>
+               <div class="alert alert-danger text-center">
+                  <?= $error_message ?>
+               </div>
+            <?php endif; ?>
+
             <form action="inicio/validarCliente.php" method="POST" class="p-4 border rounded bg-light">
                <div class="mb-3">
                   <label class="form-label">Nombre Completo</label>
-                  <input type="text" class="form-control" name="nombre" required>
+                  <input type="text" class="form-control" name="nombre" value="<?= $form_data['nombre'] ?? '' ?>" required>
                </div>
+
                <div class="mb-3">
                   <label class="form-label">Tipo de Documento</label>
                   <select class="form-select" name="TipoDoc" required>
-                     <option value="CC">Cédula de Ciudadanía</option>
-                     <option value="CE">Cédula de Extranjería</option>
+                     <option value="CC" <?= (isset($form_data['tipoDoc']) && $form_data['tipoDoc'] == 'CC') ? 'selected' : '' ?>>Cédula de Ciudadanía</option>
+                     <option value="CE" <?= (isset($form_data['tipoDoc']) && $form_data['tipoDoc'] == 'CE') ? 'selected' : '' ?>>Cédula de Extranjería</option>
                   </select>
                </div>
+
                <div class="mb-3">
                   <label class="form-label">Número de Identidad</label>
-                  <input type="number" class="form-control" name="documento" required>
+                  <input type="number" class="form-control" name="documento" value="<?= $form_data['documento'] ?? '' ?>" required>
                </div>
+
                <div class="mb-3">
                   <label class="form-label">Email</label>
-                  <input type="email" class="form-control" name="email" required>
+                  <input type="email" class="form-control" name="email" value="<?= $form_data['email'] ?? '' ?>" required>
                </div>
+
                <div class="mb-3">
                   <label class="form-label">Celular</label>
-                  <input type="tel" class="form-control" name="cel" required>
+                  <input type="tel" class="form-control" name="cel" value="<?= $form_data['celular'] ?? '' ?>" required>
                </div>
+
                <div class="mb-3">
                   <label class="form-label">Dirección</label>
-                  <input type="text" class="form-control" name="direccion" required>
+                  <input type="text" class="form-control" name="direccion" value="<?= $form_data['direccion'] ?? '' ?>" required>
                </div>
+
                <div class="text-center">
                   <button type="submit" class="btn btn-primary">Enviar</button>
                   <button type="reset" class="btn btn-secondary">Borrar</button>
@@ -64,31 +90,32 @@
          </div>
       </div>
    </section>
+
    <footer>
-         <div class="footer bg-dark text-white py-4">
-            <div class="container">
-               <div class="row">
-                  <div class="col-md-6">
-                     <h3>SANEY</h3>
-                     <p>Administración eficiente de inventarios con tecnología avanzada.</p>
-                  </div>
-                  <div class="col-md-6">
-                     <h3>Contacto</h3>
-                     <ul class="list-unstyled">
-                        <li><i class="fa fa-map-marker"></i> Ubicación específica</li>
-                        <li><i class="fa fa-phone"></i> (+57) 1234567890</li>
-                        <li><i class="fa fa-envelope"></i> SaneyInven@gmail.com</li>
-                     </ul>
-                  </div>
+      <div class="footer bg-dark text-white py-4">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-6">
+                  <h3>SANEY</h3>
+                  <p>Administración eficiente de inventarios con tecnología avanzada.</p>
+               </div>
+               <div class="col-md-6">
+                  <h3>Contacto</h3>
+                  <ul class="list-unstyled">
+                     <li><i class="fa fa-map-marker"></i> Ubicación específica</li>
+                     <li><i class="fa fa-phone"></i> (+57) 1234567890</li>
+                     <li><i class="fa fa-envelope"></i> SaneyInven@gmail.com</li>
+                  </ul>
                </div>
             </div>
          </div>
-      </footer>
-      <script src="js/jquery.min.js"></script>
-      <script src="js/popper.min.js"></script>
-      <script src="js/bootstrap.bundle.min.js"></script>
-      <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-      <script src="js/custom.js"></script>
-   </body>
-</html>
+      </div>
+   </footer>
 
+   <script src="js/jquery.min.js"></script>
+   <script src="js/popper.min.js"></script>
+   <script src="js/bootstrap.bundle.min.js"></script>
+   <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+   <script src="js/custom.js"></script>
+</body>
+</html>
