@@ -14,7 +14,7 @@ $con = conectar();
     <header class="bg-dark py-3">
         <div class="container d-flex justify-content-between align-items-center">
             <h1 class="text-white">Lista de Usuarios</h1>
-            <a href="inicioLo.php" class="btn btn-warning">Volver</a>
+            <a href="modificarborrar.php" class="btn btn-warning">Volver</a>
         </div>
     </header>
 
