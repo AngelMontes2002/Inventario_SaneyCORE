@@ -1,22 +1,41 @@
+<?php
+$conectar = mysqli_connect('localhost', 'root', '', 'inventario_saneyCORE');
+if (!$conectar) {
+    die("Error de conexión: " . mysqli_connect_error());
+}
+
+// Verificar si se ha solicitado eliminar un empleado
+if (isset($_GET['eliminar'])) {
+    $id = intval($_GET['eliminar']); // Sanitiza la entrada
+    $query = "DELETE FROM empleado WHERE n_identi = '$id'";
+    $resultado = mysqli_query($conectar, $query);
+
+    if ($resultado) {
+        echo "<script>
+                alert('Empleado eliminado correctamente');
+                window.location.href='/inventario_saneyCORE/verEmpleados.php';
+              </script>";
+    } else {
+        echo "<script>
+                alert('Error al eliminar el empleado');
+                window.location.href='/inventario_saneyCORE/verEmpleados.php';
+              </script>";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
    <meta charset="utf-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
+   <meta name="viewport" content="width=device-width, initial-scale=1">
    <title>VER EMPLEADOS</title>
    <link rel="stylesheet" href="css/bootstrap.min.css">
    <link rel="stylesheet" href="css/style.css">
-   <link rel="stylesheet" href="css/responsive.css">
-   <link rel="icon" href="images/fevicon.png" type="image/gif" />
-   <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
-   <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
 </head>
 
-<body class="main-layout"> <!-- Eliminé la segunda etiqueta <body> -->
+<body class="main-layout">
 
    <header>
       <div class="header">
@@ -38,10 +57,7 @@
                      </button>
                      <div class="collapse navbar-collapse" id="navbarsExample04">
                         <ul class="navbar-nav mr-auto">
-                           <li class="nav-item"><a class="nav-link" href="inicioLo.php">Administrar</a></li>
-                           <li class="nav-item"><a class="nav-link" href="crearPro.php">Crear Productos</a></li>
                            <li class="nav-item"><a class="nav-link" href="ModificarBorrar.php">Volver</a></li>
-                           <li class="nav-item"><a class="nav-link" href="verProductos.php">Ver Productos</a></li>
                            <li class="nav-item"><a class="nav-link" href="cerrar_sesion.php"><span class="yellow">Cerrar sesión</span></a></li>
                         </ul>
                      </div>
@@ -54,7 +70,8 @@
 
    <div class="container">
       <div class="row p-2">
-         <div class="col-md-8 offset-md-2">
+         <div class="col-md-10 offset-md-1">
+            <h2 class="text-center">Lista de Empleados</h2>
             <table class="table">
                <thead class="table-success table-striped">
                   <tr>
@@ -63,15 +80,11 @@
                      <th>Fecha de Nacimiento</th>
                      <th>Dirección</th>
                      <th>Tipo de Documento</th>
+                     <th>Acciones</th>
                   </tr>
                </thead>
                <tbody>
                   <?php
-                  $conectar = mysqli_connect('localhost', 'root', '', 'inventario_saneyCORE');
-                  if (!$conectar) {
-                     die("Error de conexión: " . mysqli_connect_error());
-                  }
-
                   $consulta = "SELECT * FROM empleado";
                   $ejecutar = mysqli_query($conectar, $consulta);
 
@@ -87,6 +100,13 @@
                         <td><?php echo htmlspecialchars($fila['fe_nacimiento']); ?></td>
                         <td><?php echo htmlspecialchars($fila['direccion']); ?></td>
                         <td><?php echo htmlspecialchars($fila['tipoDocu']); ?></td>
+                        <td>
+                           <a href="<?php echo $_SERVER['PHP_SELF']; ?>?eliminar=<?php echo $fila['n_identi']; ?>" 
+                              class="btn btn-danger btn-sm"
+                              onclick="return confirm('¿Estás seguro de que deseas eliminar este empleado?');">
+                              Eliminar
+                           </a>
+                        </td>
                      </tr>
                   <?php } ?>
                </tbody>
@@ -101,6 +121,6 @@
       </div>
    </div>
 
+   <script src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-

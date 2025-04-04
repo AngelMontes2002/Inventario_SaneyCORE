@@ -6,7 +6,7 @@
     $genero = $_POST['genero'];
     session_start();
 
-    $conectar=mysqli_connect('localhost','root','','inventario_saney');
+    $conectar=mysqli_connect('localhost','root','','inventario_saneyCORE');
 
     $sql = "INSERT INTO producto (Codigo_pro,Nombre_pro,Describir,unidad,categoria) VALUES ( '$codigo','$nombre','$descripcion', '$unidades', '$genero')";
     $ejecutar=mysqli_query($conectar,$sql);

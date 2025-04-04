@@ -94,7 +94,7 @@ $con = conectar();
                     </thead>
                     <tbody>
                         <?php
-                        $conectar = mysqli_connect('localhost', 'root', '', 'inventario_saneyCORE');
+                        $conectar = mysqli_connect('localhost', 'root', '', 'inventario_saney');
                         if (!$conectar) {
                             die("Error en la conexión a la base de datos: " . mysqli_connect_error());
                         }

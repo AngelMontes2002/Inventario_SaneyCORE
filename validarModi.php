@@ -1,6 +1,6 @@
 <?php
 session_start();
-$conectar = mysqli_connect('localhost', 'root', '', 'inventario_saney');
+$conectar = mysqli_connect('localhost', 'root', '', 'inventario_saneyCORE');
 
 if (!$conectar) {
     die('<script>

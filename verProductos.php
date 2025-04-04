@@ -86,7 +86,7 @@
 
                      </tr>
                      <?php
-                     $conectar = mysqli_connect('localhost', 'root', '', 'inventario_saney');
+                     $conectar = mysqli_connect('localhost', 'root', '', 'inventario_saneyCORE');
                      $consulta = "select * from producto";
                      $ejecutar = mysqli_query($conectar, $consulta);
                      $where="";

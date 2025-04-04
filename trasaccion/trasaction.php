@@ -22,16 +22,25 @@ $verificar = "SELECT * FROM empleado WHERE n_identi = '$documento'";
 $resultado = mysqli_query($conectar, $verificar);
 
 if (mysqli_num_rows($resultado) > 0) {
-    echo "Error: El empleado con número de identidad $documento ya existe.";
+    echo '<script>
+        alert("Error: El empleado con número de identidad ' . $documento . ' ya existe.");
+        window.location.href = "/inventario_saneyCORE/formularioemple.php";
+    </script>';
 } else {
     // Insertar solo si no existe
     $consulta = "INSERT INTO empleado (nombre_emp, tipoDocu, n_identi, fe_nacimiento, direccion) 
                  VALUES ('$nombre', '$tipoDoc', '$documento', '$fecha_na', '$direccion')";
 
     if (mysqli_query($conectar, $consulta)) {
-        echo "Empleado registrado con éxito.";
+        echo '<script>
+            alert("Empleado registrado con éxito.");
+            window.location.href = "/inventario_saneyCORE/ModificarBorrar.php";
+        </script>';
     } else {
-        echo "Error: " . mysqli_error($conectar);
+        echo '<script>
+            alert("Error en el registro: ' . mysqli_error($conectar) . '");
+            window.location.href = "/inventario_saneyCORE/formularioemple.php";
+        </script>';
     }
 }
 
