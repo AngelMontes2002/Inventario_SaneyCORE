@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-03-2025 a las 19:35:02
+-- Tiempo de generación: 04-04-2025 a las 04:18:42
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -37,6 +37,18 @@ CREATE TABLE `cliente` (
   `tipoDoc` enum('CC','CE','TI','Pasaporte') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `cliente`
+--
+
+INSERT INTO `cliente` (`identi_cliente`, `nombre`, `direccion`, `n_identi`, `correo`, `numero`, `tipoDoc`) VALUES
+(753, 'William', 'car 53', NULL, 'wall@gmail.com', 12345, 'CC'),
+(453453, 'Nohelys', 'CLL 34 SA 88', NULL, 'angelmon.652@gmail.com', 5646456, 'CC'),
+(51561561, 'Angel', 'CLL 34 SA 88', NULL, 'angel@gmail.com', 5646456, 'CC'),
+(123456789, 'Nohelys', 'CLL 34 SA 88', NULL, 'nohelis@gmail.com', 5646456, 'CC'),
+(123456888, 'sebastian', 'CLL 34 SA 88', NULL, 'Sebastian@gmail.com', 3023323158, 'CC'),
+(2147483647, 'Angel', 'CLL 34 SA 88 sdfd', NULL, 'angemonl@gmail.com', 5646456, 'CC');
+
 -- --------------------------------------------------------
 
 --
@@ -50,15 +62,6 @@ CREATE TABLE `empleado` (
   `direccion` varchar(255) DEFAULT NULL,
   `tipoDocu` enum('CC','CE','TI','Pasaporte') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `empleado`
---
-
-INSERT INTO `empleado` (`n_identi`, `nombre_emp`, `fe_nacimiento`, `direccion`, `tipoDocu`) VALUES
-(788999, 'william alexis', '1322-05-28', 'CLL 34 SA 88', 'CC'),
-(8794616, 'sebastian', '1985-10-25', 'CLL 34 SA 88', 'CC'),
-(88885555, 'sebastian', '1985-10-25', 'CLL 34 SA 88', 'CC');
 
 -- --------------------------------------------------------
 
@@ -92,6 +95,27 @@ CREATE TABLE `proveedor` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `useradmin`
+--
+
+CREATE TABLE `useradmin` (
+  `Usuario` varchar(30) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `nombre` varchar(50) NOT NULL,
+  `apellido` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `useradmin`
+--
+
+INSERT INTO `useradmin` (`Usuario`, `password`, `nombre`, `apellido`) VALUES
+('admin', '$2y$10$hEagyvYkjbZCrGGZcEtIT.y2KvBYf2dShvabzMoqdPbvc5c3DCGKu', 'admin', 'admin'),
+('Nohelis', '$2y$10$R0.Hqfi/qGNMOH3Z24uPPed7VPCfyyOiMN9.r0t6NAKWW/hSv70MK', 'Nohelys', 'Ariza');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuarios`
 --
 
@@ -107,10 +131,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`Usuario`, `password`, `nombre`, `apellido`) VALUES
-('Amontes', '123456789', 'Angel', 'Montes'),
-('donsebastian', '$2y$10$5IoIfETBVdBVyxKGmMslTeKbgbGhF74Lby6JmPwQAYhPkWBZVzFbS', 'sebastian', 'torres'),
-('PRUEBA', '$2y$10$qx61INCkLgUwYjaenSYp7.MkZNuFEEaQYRIaVC4gXxY1QoTDHNd5e', 'Gustavo', 'Millan'),
-('sistemas', '$2y$10$QYW8zdJcOEd.hXNrDoIATegZPT0a9n1z4u002R02Sm2jTYJCHd5Ru', 'Angel', 'Montes');
+('andy', '$2y$10$QwwkaIJjw6h5AnPx3IQxQeaZXTcqidKuCLr11890hBuNToRU0SQvK', 'andrea', 'saavedra');
 
 --
 -- Índices para tablas volcadas
@@ -145,6 +166,12 @@ ALTER TABLE `proveedor`
   ADD PRIMARY KEY (`nit`);
 
 --
+-- Indices de la tabla `useradmin`
+--
+ALTER TABLE `useradmin`
+  ADD PRIMARY KEY (`Usuario`);
+
+--
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
@@ -158,7 +185,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `identi_cliente` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `identi_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2147483648;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado`
@@ -170,7 +197,7 @@ ALTER TABLE `empleado`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `Codigo_pro` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Codigo_pro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedor`
