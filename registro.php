@@ -2,7 +2,6 @@
 session_start();
 $error = $_SESSION['error'] ?? null;
 $success = $_SESSION['success'] ?? null;
-unset($_SESSION['error'], $_SESSION['success']);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -27,26 +26,44 @@ unset($_SESSION['error'], $_SESSION['success']);
       }
    </script>
 </head>
+<header>
+        <div class="header bg-dark text-white">
+            <div class="container-fluid py-3">
+                <div class="row align-items-center">
+                    <!-- Logo / Título -->
+                    <div class="col-md-3 text-center text-md-left">
+                        <h1 class="h4 mb-0"><i class="fa fa-user-circle"></i> Bienvenido</h1>
+                    </div>
+
+                    <!-- Navegación -->
+                    <div class="col-md-9">
+                        <nav class="navbar navbar-expand-md navbar-dark">
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+
+                            <div class="collapse navbar-collapse" id="navbarNav">
+                                <ul class="navbar-nav ml-auto">
+                                    <!-- Grupo: Navegación -->
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="modificarBorrar.php"><i class="fa fa-arrow-left"></i>Volver</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-danger" href="cerrar_sesion.php"><i class="fa fa-sign-out"></i> Cerrar sesión</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 <body class="main-layout">
 
-   <!-- Encabezado -->
-   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container">
-         <a class="navbar-brand" href="#">Inventario SaneyCORE</a>
-         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-         </button>
-         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-               <li class="nav-item"><a class="nav-link" href="index.php">Inicio</a></li>
-               <li class="nav-item"><a class="nav-link" href="login.php">Iniciar Sesión</a></li>
-            </ul>
-         </div>
-      </div>
-   </nav>
-
    <div class="container" style="max-width: 400px; margin-top: 8%;">
-      <h2 class="text-center">Registro de usuario</h2>
+      <h2 class="text-center">Registro de usuario Empleado</h2>
 
       <?php if ($error): ?>
          <div class="alert alert-danger text-center"><?= $error ?></div>
@@ -55,24 +72,24 @@ unset($_SESSION['error'], $_SESSION['success']);
       <?php if ($success): ?>
          <script>
             alert("<?= $success ?>");
-            window.location.href = "login.php"; // Redirigir al login tras aceptar el mensaje
+            window.location.href = "inicioEmple.php";
          </script>
       <?php endif; ?>
 
-      <form action="inicio/validarRE.php" method="post" onsubmit="return validarContraseña()">
+      <form action="/inventario_saneyCORE/inicio/validarRe.php" method="post" onsubmit="return validarContraseña()">
          <div class="form-group">
-            <label>Nombre:</label>
-            <input type="text" name="nombre" class="form-control" value="<?= $_SESSION['nombre'] ?? '' ?>" required>
+            <label>Cédula:</label>
+            <input type="text" name="id_use" class="form-control" required>
          </div>
 
          <div class="form-group">
-            <label>Apellido:</label>
-            <input type="text" name="apellido" class="form-control" value="<?= $_SESSION['apellido'] ?? '' ?>" required>
+            <label>Nombre completo:</label>
+            <input type="text" name="nombre" class="form-control" required>
          </div>
 
          <div class="form-group">
-            <label>Usuario:</label>
-            <input type="text" name="usuario" class="form-control" value="<?= $_SESSION['usuario'] ?? '' ?>" required>
+            <label>Teléfono:</label>
+            <input type="text" name="telefono" class="form-control">
          </div>
 
          <div class="form-group">
@@ -82,7 +99,7 @@ unset($_SESSION['error'], $_SESSION['success']);
 
          <div class="form-group">
             <label>Confirmar Contraseña:</label>
-            <input type="password" id="confirmar_contraseña" name="confirmar_contraseña" class="form-control" required>
+            <input type="password" id="confirmar_contraseña" class="form-control" required>
          </div>
 
          <button type="submit" class="btn btn-success btn-block">Registrar</button>
@@ -92,3 +109,6 @@ unset($_SESSION['error'], $_SESSION['success']);
    <script src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+<?php
+unset($_SESSION['error'], $_SESSION['success']);
+?>

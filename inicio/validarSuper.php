@@ -8,12 +8,12 @@ $id = $_POST['id_use'];
 $nombre = $_POST['nombre'];
 $telefono = $_POST['telefono'] ?? null;
 $contraseña = $_POST['contraseña'];
-$rol = 'admin';
+$rol = 'supervisor';
 
 // Validación de contraseña
 if (strlen($contraseña) < 6) {
     $_SESSION['error'] = "La contraseña debe tener al menos 6 caracteres.";
-    header("Location: http://localhost/inventario_saneyCORE/Formularioadmin.php");
+    header("Location: http://localhost/inventario_saneyCORE/registroSupervi.php");
     exit();
 }
 
@@ -25,7 +25,7 @@ $resultado = $stmt->get_result();
 
 if ($resultado->num_rows > 0) {
     $_SESSION['error'] = "Ya existe un usuario registrado con esta cédula.";
-    header("Location: http://localhost/inventario_saneyCORE/Formularioadmin.php");
+    header("Location: http://localhost/inventario_saneyCORE/registroSupervi.php");
     exit();
 }
 
@@ -43,6 +43,6 @@ if ($stmt->execute()) {
 }
 
 // Redirigir de vuelta al formulario
-header("Location: http://localhost/inventario_saneyCORE/Formularioadmin.php");
+header("Location: http://localhost/inventario_saneyCORE/registroSupervi.php");
 exit();
 ?>

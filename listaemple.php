@@ -23,9 +23,9 @@ $con = conectar();
         <table class="table table-bordered">
             <thead class="table-dark text-white">
                 <tr>
-                    <th>Usuario</th>
+                    <th>Cédula</th>
                     <th>Nombre</th>
-                    <th>Apellido</th>
+                    <th>Teléfono</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -36,16 +36,16 @@ $con = conectar();
                     die("Error en la conexión a la base de datos: " . mysqli_connect_error());
                 }
 
-                $consulta = "SELECT * FROM usuarios";
+                $consulta = "SELECT id_use, nombre, telefono FROM usuarios WHERE rol = 'empleado'";
                 $resultado = mysqli_query($conectar, $consulta);
 
                 while ($fila = mysqli_fetch_assoc($resultado)) {
                     echo "<tr>
-                            <td>{$fila['Usuario']}</td>
+                            <td>{$fila['id_use']}</td>
                             <td>{$fila['nombre']}</td>
-                            <td>{$fila['apellido']}</td>
+                            <td>{$fila['telefono']}</td>
                             <td>
-                                <a href='listaemple.php?borrar={$fila['Usuario']}' class='btn btn-danger' onclick='return confirm(\"¿Seguro que quieres eliminar este usuario?\")'>Eliminar</a>
+                                <a href='listaemple.php?borrar={$fila['id_use']}' class='btn btn-danger' onclick='return confirm(\"¿Seguro que quieres eliminar este usuario?\")'>Eliminar</a>
                             </td>
                           </tr>";
                 }
@@ -67,7 +67,7 @@ $con = conectar();
         }
 
         $borrar_id = mysqli_real_escape_string($conectar, $borrar_id);
-        $borrar = "DELETE FROM usuarios WHERE Usuario = '$borrar_id'";
+        $borrar = "DELETE FROM usuarios WHERE id_use = '$borrar_id'";
         $ejecutar = mysqli_query($conectar, $borrar);
 
         if ($ejecutar) {

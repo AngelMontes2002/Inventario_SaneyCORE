@@ -9,8 +9,9 @@ $con = conectar();
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Modificar</title>
+    <title>Modificar Producto</title>
 
+    <!-- Estilos -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
@@ -22,31 +23,46 @@ $con = conectar();
 <body class="main-layout">
 
     <header>
-        <div class="header">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2">
-                        <div class="full">
-                            <div class="logo">
-                                <a href="#">
-                                    <h1 style="color: white; padding: 5px 150px;">Bienvenido</h1>
-                                </a>
-                            </div>
-                        </div>
+        <div class="header bg-dark text-white">
+            <div class="container-fluid py-3">
+                <div class="row align-items-center">
+                    <!-- Logo / Título -->
+                    <div class="col-md-3 text-center text-md-left">
+                        <h1 class="h4 mb-0"><i class="fa fa-user-circle"></i> Bienvenido</h1>
                     </div>
-                    <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10">
-                        <nav class="navigation navbar navbar-expand-md navbar-dark" style="padding: 0 250px;">
-                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+
+                    <!-- Navegación -->
+                    <div class="col-md-9">
+                        <nav class="navbar navbar-expand-md navbar-dark">
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
                                 <span class="navbar-toggler-icon"></span>
                             </button>
-                            <div class="collapse navbar-collapse" id="navbarsExample04">
-                                <ul class="navbar-nav mr-auto">
-                                    <li class="nav-item"><a class="nav-link" href="formularioemple.php">Crear Empleado</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="formularioAdmin.php">Crear Usuario Admin</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="listaemple.php">Ver Usuarios</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="verEmpleados.php">Ver lista de empleados</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="inicioLo.php"><span class="yellow">Volver</span></a></li>
-                                    <li class="nav-item"><a class="nav-link" href="cerrar_sesion.php"><span class="yellow">Cerrar sesión</span></a></li>
+
+                            <div class="collapse navbar-collapse" id="navbarNav">
+                                <ul class="navbar-nav ml-auto">
+
+                                    <!-- Grupo: Gestión de Usuarios -->
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="usuariosDropdown" role="button" data-toggle="dropdown">
+                                            <i class="fa fa-users"></i> Gestión de Usuarios
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="registro.php"><i class="fa fa-user-plus"></i> Crear Usuario de ventas</a>
+                                            <a class="dropdown-item" href="formularioAdmin.php"><i class="fa fa-user-secret"></i> Crear Admin</a>
+                                            <a class="dropdown-item" href="registroSupervi.php"><i class="fa fa-user"></i> Crear Supervisor</a>
+                                            <a class="dropdown-item" href="listaemple.php"><i class="fa fa-list"></i> Ver Usuarios</a>
+                                            <a class="dropdown-item" href="ver_retiros.php"><i class="fa fa-list"></i> Registro de ventas</a>
+                                        </div>
+                                    </li>
+
+                                    <!-- Grupo: Navegación -->
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="inicioLo.php"><i class="fa fa-arrow-left"></i> Volver</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-danger" href="cerrar_sesion.php"><i class="fa fa-sign-out"></i> Cerrar sesión</a>
+                                    </li>
+
                                 </ul>
                             </div>
                         </nav>
@@ -56,33 +72,36 @@ $con = conectar();
         </div>
     </header>
 
-    <div class="container mt-4">
+
+    <!-- Contenido principal -->
+    <main class="container mt-5">
         <div class="row">
-            <!-- Formulario de Modificación -->
+
+            <!-- Formulario de modificación -->
             <div class="col-md-4">
                 <h3>Modificar Producto</h3>
                 <form action="validarModi.php" method="POST">
-                    <input type="number" class="form-control mb-3" name="codi" placeholder="Código" required>
-                    <input type="text" class="form-control mb-3" name="nombre" placeholder="Nombre" required>
-                    <input type="text" class="form-control mb-3" name="descrip" placeholder="Descripción">
-                    <input type="number" class="form-control mb-3" name="uni" placeholder="Cantidad" required>
+                    <input type="number" name="codi" class="form-control mb-3" placeholder="Código" required>
+                    <input type="text" name="nombre" class="form-control mb-3" placeholder="Nombre" required>
+                    <input type="text" name="descrip" class="form-control mb-3" placeholder="Descripción">
+                    <input type="number" name="uni" class="form-control mb-3" placeholder="Cantidad" required>
                     <label for="categoria">Categoría</label>
                     <select name="genero" class="form-control mb-3">
-                        <option>Casa</option>
-                        <option>Canasta Familiar</option>
-                        <option>Bebida</option>
-                        <option>Tecnología</option>
-                        <option>Juguete</option>
+                        <option value="Casa">Casa</option>
+                        <option value="Canasta Familiar">Canasta Familiar</option>
+                        <option value="Bebida">Bebida</option>
+                        <option value="Tecnología">Tecnología</option>
+                        <option value="Juguete">Juguete</option>
                     </select>
-                    <button type="submit" class="btn btn-primary">Registrar</button>
+                    <button type="submit" class="btn btn-primary">Modificar</button>
                 </form>
             </div>
 
             <!-- Tabla de productos -->
             <div class="col-md-8">
                 <h3>Lista de Productos</h3>
-                <table class="table table-bordered">
-                    <thead class="table-success">
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-success bg-success text-white">
                         <tr>
                             <th>Código</th>
                             <th>Nombre</th>
@@ -94,7 +113,7 @@ $con = conectar();
                     </thead>
                     <tbody>
                         <?php
-                        $conectar = mysqli_connect('localhost', 'root', '', 'inventario_saney');
+                        $conectar = mysqli_connect('localhost', 'root', '', 'inventario_saneyCORE');
                         if (!$conectar) {
                             die("Error en la conexión a la base de datos: " . mysqli_connect_error());
                         }
@@ -110,19 +129,20 @@ $con = conectar();
                                     <td>{$fila['unidad']}</td>
                                     <td>{$fila['categoria']}</td>
                                     <td>
-                                        <a href='ModificarBorrar.php?borrar={$fila['Codigo_pro']}' class='btn btn-danger' onclick='return confirm(\"¿Estás seguro de eliminar este producto?\")'>Eliminar</a>
+                                        <a href='ModificarBorrar.php?borrar={$fila['Codigo_pro']}' class='btn btn-danger btn-sm' onclick='return confirm(\"¿Estás seguro de eliminar este producto?\")'>Eliminar</a>
                                     </td>
                                   </tr>";
                         }
+
                         mysqli_close($conectar);
                         ?>
                     </tbody>
                 </table>
             </div>
         </div>
-    </div>
+    </main>
 
-    <!-- Lógica para Eliminar -->
+    <!-- Script de eliminación -->
     <?php
     if (isset($_GET['borrar'])) {
         $borrar_id = $_GET['borrar'];
@@ -146,7 +166,15 @@ $con = conectar();
     }
     ?>
 
+    <!-- Scripts JS -->
     <script src="js/bootstrap.bundle.min.js"></script>
+    <!-- Scripts JS necesarios para que funcione el dropdown de Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
 </body>
 
 </html>

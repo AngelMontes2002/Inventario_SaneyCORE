@@ -41,15 +41,6 @@
                            <li class="nav-item active">
                               <a class="nav-link" href="index.php">Home</a>
                            </li>
-                           <li class="nav-item">
-                              <a class="nav-link" href="#">Quienes somos</a>
-                           </li>
-                           <li class="nav-item">
-                              <a class="nav-link" href="contacto.php">Contactos</a>
-                           </li>
-                           <li class="nav-item">
-                              <a class="nav-link" href="login.php"><span class="yellow">Login</span></a>
-                           </li>
                         </ul>
                      </div>
                   </nav>
@@ -75,9 +66,6 @@
                      <input type="password" id="password" name="password" class="form-control" placeholder="Ingrese su contraseña" required autocomplete="off">
                   </div>
                   <button type="submit" class="btn btn-success btn-block" name="btningresar">Ingresar</button>
-                  <div class="text-center mt-3">
-                     <a href="registro.php">¿Quieres registrarte?</a>
-                  </div>
                </form>
             </div>
          </div>

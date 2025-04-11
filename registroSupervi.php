@@ -63,7 +63,7 @@ $success = $_SESSION['success'] ?? null;
 <body class="main-layout">
 
    <div class="container" style="max-width: 400px; margin-top: 8%;">
-      <h2 class="text-center">Registro de usuario de Admin</h2>
+      <h2 class="text-center">Registro de usuario de Supervisor</h2>
 
       <?php if ($error): ?>
          <div class="alert alert-danger text-center"><?= $error ?></div>
@@ -72,11 +72,11 @@ $success = $_SESSION['success'] ?? null;
       <?php if ($success): ?>
          <script>
             alert("<?= $success ?>");
-            window.location.href = "ModificarBorrar.php";
+            window.location.href = "login.php";
          </script>
       <?php endif; ?>
 
-      <form action="/inventario_saneyCORE/inicio/validarFormularioAdmin.php" method="post" onsubmit="return validarContraseña()">
+      <form action="/inventario_saneyCORE/inicio/validarSuper.php" method="post" onsubmit="return validarContraseña()">
          <div class="form-group">
             <label>Cédula:</label>
             <input type="text" name="id_use" class="form-control" required>

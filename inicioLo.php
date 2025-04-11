@@ -1,93 +1,108 @@
-
 <!DOCTYPE html>
 <html lang="es">
-   <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>SANEY</title>
 
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+   <!-- Estilos externos -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link rel="stylesheet" href="css/style.css">
+   <link rel="icon" href="images/fevicon.png" type="image/gif" />
 
-      <title>SANEY</title>
-      <meta name="keywords" content="">
-      <meta name="description" content="">
-      <link rel="stylesheet" href="css/bootstrap.min.css">
-      <link rel="stylesheet" href="css/style.css">
-      <link rel="stylesheet" href="css/responsive.css">
-      <link rel="icon" href="images/fevicon.png" type="image/gif" />
-      <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
-      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
-   </head>
+   <style>
+      .header {
+         background-color: #212529;
+         padding: 15px 0;
+      }
+      .navbar .nav-link {
+         color: white !important;
+         font-weight: 500;
+         margin-right: 15px;
+         transition: color 0.3s ease;
+      }
+      .navbar .nav-link:hover {
+         color: #ffc107 !important;
+      }
+      .navbar-brand img {
+         height: 50px;
+      }
+      .navbar-toggler {
+         border-color: #fff;
+      }
+      .navbar-toggler-icon {
+         background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255,255,255,1%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+      }
+   </style>
+</head>
 
-   <body class="main-layout">
+<body class="main-layout">
 
-      
-
-      <header>
-
-         <div class="header">
-            <div class="container-fluid">
-               <div class="row">
-               <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2">
-                     <div class="full">
-                     <div class="logo">
-                           <a href="index.php"><img src="images/logo2.png" width="70px" height="50px"/></a>
-                     </div>
-                     </div>
-                  </div>
-                  <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10" >
-                     <nav class="navigation navbar navbar-expand-md navbar-dark " style="padding: 0 250px;">
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarsExample04">
-                        <ul class="navbar-nav mr-auto">
-                              <li class="nav-item">
-                              <a class="nav-link" href="admincontra.php">Administrador</a>
-                              </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="crearPro.php">Crear Productos</a>
-                              </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="verProductos.php">Ver Productos</a>
-                              </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="cerrar_sesion.php"><span class="yellow">Cerrar sesion</span></a>
-                              </li>
-                           </ul>
-                        </div>
-                     </nav>
-                  </div>
-               </div>
+   <!-- ENCABEZADO -->
+   <header class="header">
+      <div class="container-fluid">
+         <nav class="navbar navbar-expand-lg navbar-dark">
+            <a class="navbar-brand" href="index.php">
+               <img src="images/logo2.png" alt="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+               <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+               <ul class="navbar-nav">
+                  <li class="nav-item">
+                     <a class="nav-link" href="admincontra.php"><i class="fa fa-lock"></i> Login Admin</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="crearPro.php"><i class="fa fa-plus-square"></i> Crear Productos</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="verProductos.php"><i class="fa fa-eye"></i> Ver Productos</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="registro.php"><i class="fa fa-user-plus"></i> Crear Usuario de Ventas</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link text-danger" href="cerrar_sesion.php"><i class="fa fa-sign-out"></i> Cerrar Sesión</a>
+                  </li>
+               </ul>
             </div>
-         </div>
-      </header>
-      <section class="banner_main"style="http://localhost/Inventario_Saney/images/banner.png">
-         <div id="banner1" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-               <li data-target="#banner1" data-slide-to="0" class="active"></li>
-               <li data-target="#banner1" data-slide-to="1"></li>
-               <li data-target="#banner1" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-               <div class="carousel-item active">
-                  <div class="container">
-                     <div class="carousel-caption">
-                        <div class="row">
-                           <div class="col-md-7">
-                              <div class="text-bg">
-                                 <h1> <span class="yellow"> Inventario</span> <br>De tus sueños</h1>
-                                 <p>It is a long established fact that a reader will be distracted by the readablecontent of a page when looking at its layout. The point of using Lorem </p>
-                              </div>
+         </nav>
+      </div>
+   </header>
+
+   <!-- BANNER -->
+   <section class="banner_main" style="background-image: url('images/banner.png'); background-size: cover; background-position: center;">
+      <div id="banner1" class="carousel slide" data-ride="carousel">
+         <ol class="carousel-indicators">
+            <li data-target="#banner1" data-slide-to="0" class="active"></li>
+            <li data-target="#banner1" data-slide-to="1"></li>
+            <li data-target="#banner1" data-slide-to="2"></li>
+         </ol>
+         <div class="carousel-inner">
+            <div class="carousel-item active">
+               <div class="container">
+                  <div class="carousel-caption">
+                     <div class="row">
+                        <div class="col-md-7">
+                           <div class="text-bg">
+                              <h1><span class="yellow">Inventario</span><br>De tus sueños</h1>
+                              <p>Gestiona tu inventario con precisión y facilidad gracias a nuestra plataforma moderna.</p>
                            </div>
                         </div>
                      </div>
                   </div>
                </div>
+            </div>
+            <!-- Puedes agregar más slides aquí -->
          </div>
-      </section>
+      </div>
+   </section>
 
+   <!-- SCRIPTS NECESARIOS -->
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-
 </html>
