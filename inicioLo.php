@@ -52,7 +52,7 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                <ul class="navbar-nav">
                   <li class="nav-item">
-                     <a class="nav-link" href="admincontra.php"><i class="fa fa-lock"></i> Login Admin</a>
+                     <a class="nav-link" href="login.php"><i class="fa fa-lock"></i> Login Admin</a>
                   </li>
                   <li class="nav-item">
                      <a class="nav-link" href="crearPro.php"><i class="fa fa-plus-square"></i> Crear Productos</a>

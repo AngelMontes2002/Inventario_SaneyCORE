@@ -49,9 +49,6 @@ $con = conectar();
                                         </div>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="inicioLo.php"><i class="fa fa-arrow-left"></i> Volver</a>
-                                    </li>
-                                    <li class="nav-item">
                                         <a class="nav-link text-danger" href="cerrar_sesion.php"><i class="fa fa-sign-out"></i> Cerrar sesión</a>
                                     </li>
                                 </ul>

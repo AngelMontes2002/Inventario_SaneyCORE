@@ -72,7 +72,7 @@ $success = $_SESSION['success'] ?? null;
       <?php if ($success): ?>
          <script>
             alert("<?= $success ?>");
-            window.location.href = "inicioEmple.php";
+            window.location.href = "login.php";
          </script>
       <?php endif; ?>
 
