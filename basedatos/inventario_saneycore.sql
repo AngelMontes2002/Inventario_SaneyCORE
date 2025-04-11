@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-04-2025 a las 04:18:42
+-- Tiempo de generación: 11-04-2025 a las 23:02:35
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -52,15 +52,15 @@ INSERT INTO `cliente` (`identi_cliente`, `nombre`, `direccion`, `n_identi`, `cor
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `empleado`
+-- Estructura de tabla para la tabla `detalle_retiro`
 --
 
-CREATE TABLE `empleado` (
-  `n_identi` int(11) NOT NULL,
-  `nombre_emp` varchar(50) NOT NULL,
-  `fe_nacimiento` date NOT NULL,
-  `direccion` varchar(255) DEFAULT NULL,
-  `tipoDocu` enum('CC','CE','TI','Pasaporte') NOT NULL
+CREATE TABLE `detalle_retiro` (
+  `id` int(11) NOT NULL,
+  `retiro_id` int(11) NOT NULL,
+  `producto_codigo` int(11) NOT NULL,
+  `cantidad_retirada` int(11) NOT NULL,
+  `stock_restante` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -81,37 +81,29 @@ CREATE TABLE `producto` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `proveedor`
+-- Estructura de tabla para la tabla `retiros`
 --
 
-CREATE TABLE `proveedor` (
-  `nit` int(11) NOT NULL,
-  `nombre` varchar(50) NOT NULL,
-  `direccion` varchar(255) DEFAULT NULL,
-  `codigo` int(11) DEFAULT NULL,
-  `n_identidad` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `useradmin`
---
-
-CREATE TABLE `useradmin` (
-  `Usuario` varchar(30) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `nombre` varchar(50) NOT NULL,
-  `apellido` varchar(50) NOT NULL
+CREATE TABLE `retiros` (
+  `id` int(11) NOT NULL,
+  `numero_orden` varchar(20) NOT NULL,
+  `usuario_id` varchar(50) NOT NULL,
+  `fecha` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `useradmin`
+-- Disparadores `retiros`
 --
-
-INSERT INTO `useradmin` (`Usuario`, `password`, `nombre`, `apellido`) VALUES
-('admin', '$2y$10$hEagyvYkjbZCrGGZcEtIT.y2KvBYf2dShvabzMoqdPbvc5c3DCGKu', 'admin', 'admin'),
-('Nohelis', '$2y$10$R0.Hqfi/qGNMOH3Z24uPPed7VPCfyyOiMN9.r0t6NAKWW/hSv70MK', 'Nohelys', 'Ariza');
+DELIMITER $$
+CREATE TRIGGER `before_insert_retiro` BEFORE INSERT ON `retiros` FOR EACH ROW BEGIN
+  DECLARE next_id INT;
+  SELECT AUTO_INCREMENT INTO next_id
+  FROM INFORMATION_SCHEMA.TABLES
+  WHERE TABLE_NAME='retiros' AND TABLE_SCHEMA=DATABASE();
+  SET NEW.numero_orden = CONCAT('SAN', LPAD(next_id, 6, '0'));
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -120,18 +112,20 @@ INSERT INTO `useradmin` (`Usuario`, `password`, `nombre`, `apellido`) VALUES
 --
 
 CREATE TABLE `usuarios` (
-  `Usuario` varchar(30) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `nombre` varchar(50) NOT NULL,
-  `apellido` varchar(50) NOT NULL
+  `id_use` varchar(20) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `contraseña` varchar(255) NOT NULL,
+  `telefono` varchar(20) DEFAULT NULL,
+  `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp(),
+  `rol` enum('admin','supervisor','empleado') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`Usuario`, `password`, `nombre`, `apellido`) VALUES
-('andy', '$2y$10$QwwkaIJjw6h5AnPx3IQxQeaZXTcqidKuCLr11890hBuNToRU0SQvK', 'andrea', 'saavedra');
+INSERT INTO `usuarios` (`id_use`, `nombre`, `contraseña`, `telefono`, `fecha_registro`, `rol`) VALUES
+('admin', 'admin', '$2y$10$kg2KUDOcD.ODP2Y1yek7g.gx/t.KWbLVyRsz.FEBb6OCMMvRBPWOa', '', '2025-04-11 21:01:20', 'admin');
 
 --
 -- Índices para tablas volcadas
@@ -146,10 +140,12 @@ ALTER TABLE `cliente`
   ADD KEY `idx_cliente_correo` (`correo`);
 
 --
--- Indices de la tabla `empleado`
+-- Indices de la tabla `detalle_retiro`
 --
-ALTER TABLE `empleado`
-  ADD PRIMARY KEY (`n_identi`);
+ALTER TABLE `detalle_retiro`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `retiro_id` (`retiro_id`),
+  ADD KEY `producto_codigo` (`producto_codigo`);
 
 --
 -- Indices de la tabla `producto`
@@ -160,22 +156,17 @@ ALTER TABLE `producto`
   ADD KEY `idx_producto_categoria` (`categoria`);
 
 --
--- Indices de la tabla `proveedor`
+-- Indices de la tabla `retiros`
 --
-ALTER TABLE `proveedor`
-  ADD PRIMARY KEY (`nit`);
-
---
--- Indices de la tabla `useradmin`
---
-ALTER TABLE `useradmin`
-  ADD PRIMARY KEY (`Usuario`);
+ALTER TABLE `retiros`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_usuario_retiro` (`usuario_id`);
 
 --
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`Usuario`);
+  ADD PRIMARY KEY (`id_use`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -188,32 +179,45 @@ ALTER TABLE `cliente`
   MODIFY `identi_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2147483648;
 
 --
--- AUTO_INCREMENT de la tabla `empleado`
+-- AUTO_INCREMENT de la tabla `detalle_retiro`
 --
-ALTER TABLE `empleado`
-  MODIFY `n_identi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88885556;
+ALTER TABLE `detalle_retiro`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `Codigo_pro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
+  MODIFY `Codigo_pro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `proveedor`
+-- AUTO_INCREMENT de la tabla `retiros`
 --
-ALTER TABLE `proveedor`
-  MODIFY `nit` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `retiros`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas
 --
 
 --
+-- Filtros para la tabla `detalle_retiro`
+--
+ALTER TABLE `detalle_retiro`
+  ADD CONSTRAINT `detalle_retiro_ibfk_1` FOREIGN KEY (`retiro_id`) REFERENCES `retiros` (`id`),
+  ADD CONSTRAINT `detalle_retiro_ibfk_2` FOREIGN KEY (`producto_codigo`) REFERENCES `producto` (`Codigo_pro`);
+
+--
 -- Filtros para la tabla `producto`
 --
 ALTER TABLE `producto`
   ADD CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`identi_cliente`) REFERENCES `cliente` (`identi_cliente`) ON DELETE SET NULL;
+
+--
+-- Filtros para la tabla `retiros`
+--
+ALTER TABLE `retiros`
+  ADD CONSTRAINT `fk_usuario_retiro` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id_use`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
