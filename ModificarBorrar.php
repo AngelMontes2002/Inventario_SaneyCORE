@@ -26,22 +26,16 @@ $con = conectar();
         <div class="header bg-dark text-white">
             <div class="container-fluid py-3">
                 <div class="row align-items-center">
-                    <!-- Logo / Título -->
                     <div class="col-md-3 text-center text-md-left">
                         <h1 class="h4 mb-0"><i class="fa fa-user-circle"></i> Bienvenido</h1>
                     </div>
-
-                    <!-- Navegación -->
                     <div class="col-md-9">
                         <nav class="navbar navbar-expand-md navbar-dark">
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
                                 <span class="navbar-toggler-icon"></span>
                             </button>
-
                             <div class="collapse navbar-collapse" id="navbarNav">
                                 <ul class="navbar-nav ml-auto">
-
-                                    <!-- Grupo: Gestión de Usuarios -->
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" href="#" id="usuariosDropdown" role="button" data-toggle="dropdown">
                                             <i class="fa fa-users"></i> Gestión de Usuarios
@@ -54,15 +48,12 @@ $con = conectar();
                                             <a class="dropdown-item" href="ver_retiros.php"><i class="fa fa-list"></i> Registro de ventas</a>
                                         </div>
                                     </li>
-
-                                    <!-- Grupo: Navegación -->
                                     <li class="nav-item">
                                         <a class="nav-link" href="inicioLo.php"><i class="fa fa-arrow-left"></i> Volver</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link text-danger" href="cerrar_sesion.php"><i class="fa fa-sign-out"></i> Cerrar sesión</a>
                                     </li>
-
                                 </ul>
                             </div>
                         </nav>
@@ -72,12 +63,8 @@ $con = conectar();
         </div>
     </header>
 
-
-    <!-- Contenido principal -->
     <main class="container mt-5">
         <div class="row">
-
-            <!-- Formulario de modificación -->
             <div class="col-md-4">
                 <h3>Modificar Producto</h3>
                 <form action="validarModi.php" method="POST">
@@ -97,7 +84,6 @@ $con = conectar();
                 </form>
             </div>
 
-            <!-- Tabla de productos -->
             <div class="col-md-8">
                 <h3>Lista de Productos</h3>
                 <table class="table table-bordered table-hover">
@@ -153,6 +139,12 @@ $con = conectar();
         }
 
         $borrar_id = mysqli_real_escape_string($conectar, $borrar_id);
+
+        // Eliminar primero los registros relacionados en detalle_retiro
+        $borrar_detalles = "DELETE FROM detalle_retiro WHERE producto_codigo = '$borrar_id'";
+        mysqli_query($conectar, $borrar_detalles);
+
+        // Luego eliminar el producto
         $borrar = "DELETE FROM producto WHERE Codigo_pro = '$borrar_id'";
         $ejecutar = mysqli_query($conectar, $borrar);
 
@@ -168,13 +160,9 @@ $con = conectar();
 
     <!-- Scripts JS -->
     <script src="js/bootstrap.bundle.min.js"></script>
-    <!-- Scripts JS necesarios para que funcione el dropdown de Bootstrap -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
-
 </body>
 
 </html>
