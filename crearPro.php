@@ -79,14 +79,17 @@
                   <input type="text" class="form-control mb-3" name="descrip" placeholder="Descripcion">
                   <input type="number" class="form-control mb-3" name="uni" placeholder="Cantidad" required>
                   <p>Categoria</p>
-                  <select name="genero" class="form-control mb-3" >
-                     <option>Accesorios de la casa</option>
-                     <option>Canasta Familiar</option>
-                     <option>Bebidas</option>
-                     <option>Tecnologia</option>
-                     <option>Herramientas</option>
-                     <option>Juguete</option>
-                  </select><br>
+                  <select name="genero" class="form-control mb-3">
+                        <option value="Hogar">Hogar</option>
+                        <option value="Electronica">Electronica</option>
+                        <option value="Alimentos y Bebida">Alimentos y Bebida</option>
+                        <option value="Fereteria">Fereteria</option>
+                        <option value="Oficina y papeleria">Oficina y papeleria</option>
+                        <option value="Salud y farmacia">Salud y farmacia</option>
+                        <option value="Muebles y decoracion">Muebles y decoracion</option>
+                        <option value="Repuesto y accesorio">Repuesto y accesorio</option>
+                        <option value="Oficina y papeleria">Oficina y papeleria</option>
+                    </select><br>
                   <input type="submit" class="btn btn-primary" value="Registrar">
                </form>
             </div>

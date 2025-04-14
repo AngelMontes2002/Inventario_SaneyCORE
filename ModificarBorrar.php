@@ -71,11 +71,15 @@ $con = conectar();
                     <input type="number" name="uni" class="form-control mb-3" placeholder="Cantidad" required>
                     <label for="categoria">Categoría</label>
                     <select name="genero" class="form-control mb-3">
-                        <option value="Casa">Casa</option>
-                        <option value="Canasta Familiar">Canasta Familiar</option>
-                        <option value="Bebida">Bebida</option>
-                        <option value="Tecnología">Tecnología</option>
-                        <option value="Juguete">Juguete</option>
+                        <option value="Hogar">Hogar</option>
+                        <option value="Electronica">Electronica</option>
+                        <option value="Alimentos y Bebida">Alimentos y Bebida</option>
+                        <option value="Fereteria">Fereteria</option>
+                        <option value="Oficina y papeleria">Oficina y papeleria</option>
+                        <option value="Salud y farmacia">Salud y farmacia</option>
+                        <option value="Muebles y decoracion">Muebles y decoracion</option>
+                        <option value="Repuesto y accesorio">Repuesto y accesorio</option>
+                        <option value="Oficina y papeleria">Oficina y papeleria</option>
                     </select>
                     <button type="submit" class="btn btn-primary">Modificar</button>
                 </form>
