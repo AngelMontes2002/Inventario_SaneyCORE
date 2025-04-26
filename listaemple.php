@@ -67,13 +67,30 @@ $con = conectar();
         }
 
         $borrar_id = mysqli_real_escape_string($conectar, $borrar_id);
-        $borrar = "DELETE FROM usuarios WHERE id_use = '$borrar_id'";
-        $ejecutar = mysqli_query($conectar, $borrar);
 
-        if ($ejecutar) {
-            echo "<script>alert('Usuario eliminado correctamente'); window.location.href='listaemple.php';</script>";
+        // 1. Verificar si el usuario tiene retiros
+        $consulta_retiros = "SELECT id FROM retiros WHERE usuario_id = '$borrar_id'";
+        $resultado_retiros = mysqli_query($conectar, $consulta_retiros);
+
+        $retiros = [];
+        while ($row = mysqli_fetch_assoc($resultado_retiros)) {
+            $retiros[] = $row['id'];  // Guardamos los ID de los retiros
+        }
+
+        if (count($retiros) > 0) {
+            // Si tiene retiros, mostrar los códigos en el mensaje
+            $codigos_retiros = implode(", ", $retiros);
+            echo "<script>alert('No se puede eliminar el usuario porque tiene retiros registrados. Códigos de retiros: $codigos_retiros'); window.location.href='listaemple.php';</script>";
         } else {
-            echo "<script>alert('Error al eliminar el usuario');</script>";
+            // Si NO tiene retiros, se elimina el usuario
+            $borrar_usuario = "DELETE FROM usuarios WHERE id_use = '$borrar_id'";
+            $ejecutar = mysqli_query($conectar, $borrar_usuario);
+
+            if ($ejecutar) {
+                echo "<script>alert('Usuario eliminado correctamente'); window.location.href='listaemple.php';</script>";
+            } else {
+                echo "<script>alert('Error al eliminar el usuario'); window.location.href='listaemple.php';</script>";
+            }
         }
 
         mysqli_close($conectar);

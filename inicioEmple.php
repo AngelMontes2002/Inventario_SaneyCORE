@@ -130,18 +130,22 @@ $idUsuario = $_SESSION['usuario'];
    <div class="row">
       <?php
       $conectar = mysqli_connect('localhost', 'root', '', 'inventario_saneyCORE');
+      if (!$conectar) {
+         die("Error de conexión: " . mysqli_connect_error());
+      }
+
       $consulta = "SELECT * FROM producto";
       $ejecutar = mysqli_query($conectar, $consulta);
 
       while ($fila = mysqli_fetch_array($ejecutar)) {
-         $codigo = $fila['Codigo_pro'];
-         $nombre = $fila['Nombre_pro'];
-         $descripcion = $fila['Describir'];
-         $unidad = $fila['unidad'];
-         $categoria = $fila['categoria'];
+         $codigo = htmlspecialchars($fila['Codigo_pro']);
+         $nombre = htmlspecialchars($fila['Nombre_pro']);
+         $descripcion = htmlspecialchars($fila['Describir']);
+         $unidad = htmlspecialchars($fila['unidad']);
+         $categoria = htmlspecialchars($fila['categoria']);
       ?>
          <div class="col-md-6 col-lg-4">
-            <div class="product-card" id="prod_<?php echo $codigo; ?>" onclick="alternarProducto('<?php echo $codigo; ?>', '<?php echo $nombre; ?>')">
+            <div class="product-card" id="prod_<?php echo $codigo; ?>" onclick="alternarProducto('<?php echo $codigo; ?>', '<?php echo addslashes($nombre); ?>')">
                <div class="d-flex align-items-center mb-2">
                   <i class="fa fa-cube product-icon"></i>
                   <h5 class="mb-0"><?php echo $nombre; ?></h5>
@@ -166,7 +170,7 @@ $idUsuario = $_SESSION['usuario'];
 
 <!-- JS -->
 <script>
-   const ID_USUARIO = <?php echo $idUsuario; ?>;
+   const ID_USUARIO = "<?php echo addslashes($idUsuario); ?>";
    const carrito = {};
 
    function alternarProducto(codigo, nombre) {
@@ -182,8 +186,10 @@ $idUsuario = $_SESSION['usuario'];
    }
 
    function actualizarCantidad(codigo, nuevaCantidad) {
-      carrito[codigo].cantidad = parseInt(nuevaCantidad);
-      renderizarCarrito();
+      if (carrito[codigo]) {
+         carrito[codigo].cantidad = parseInt(nuevaCantidad);
+         renderizarCarrito();
+      }
    }
 
    function renderizarCarrito() {
@@ -202,31 +208,41 @@ $idUsuario = $_SESSION['usuario'];
    }
 
    function procesarRetiro() {
-      const productos = [];
-      for (const codigo in carrito) {
-         productos.push({ id: codigo, cantidad: carrito[codigo].cantidad });
-      }
+    const productos = [];
+    for (const codigo in carrito) {
+        productos.push({ id: codigo, cantidad: carrito[codigo].cantidad });
+    }
 
-      fetch('procesar_retiro.php', {
-         method: 'POST',
-         headers: {
+    fetch('procesar_retiro.php', {
+        method: 'POST',
+        headers: {
             'Content-Type': 'application/json'
-         },
-         body: JSON.stringify({
+        },
+        body: JSON.stringify({
             id_usuario: ID_USUARIO,
             productos: productos
-         })
-      })
-      .then(res => res.text())
-      .then(data => {
-         document.getElementById('respuestaServidor').innerText = data;
-         carritoReset();
-      })
-      .catch(error => {
-         document.getElementById('respuestaServidor').innerText = "❌ Error al procesar el retiro";
-         console.error('Error:', error);
-      });
-   }
+        })
+    })
+    .then(res => res.json())  // Cambié .text() a .json() porque el servidor devuelve un JSON
+    .then(data => {
+        if (data.success) {
+            document.getElementById('respuestaServidor').innerText = data.success;
+
+            // Mostrar una ventana emergente con el número de retiro
+            alert("¡Retiro exitoso! Número de orden: " + data.orden);
+
+            // Recargar la página para actualizar la interfaz
+            location.reload();
+        } else {
+            document.getElementById('respuestaServidor').innerText = data.error;
+        }
+    })
+    .catch(error => {
+        document.getElementById('respuestaServidor').innerText = "❌ Error al procesar el retiro";
+        console.error('Error:', error);
+    });
+}
+
 
    function carritoReset() {
       for (const codigo in carrito) {

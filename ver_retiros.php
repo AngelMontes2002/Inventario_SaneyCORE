@@ -1,13 +1,17 @@
 <?php
-session_start();
-if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
-    echo "⛔ Acceso denegado.";
-    exit;
-}
+include('verificar_sesion.php'); // Incluir la verificación de sesión
 
 $conexion = new mysqli("localhost", "root", "", "inventario_saneyCORE");
 if ($conexion->connect_error) {
     die("❌ Error de conexión: " . $conexion->connect_error);
+}
+
+// Establecemos el orden por defecto (descendente)
+$order = 'DESC'; 
+
+// Si se recibe un parámetro para cambiar el orden, lo actualizamos
+if (isset($_GET['order']) && $_GET['order'] == 'asc') {
+    $order = 'ASC';
 }
 
 $sql = "
@@ -21,7 +25,7 @@ $sql = "
     JOIN usuarios u ON r.usuario_id = u.id_use
     LEFT JOIN detalle_retiro d ON r.id = d.retiro_id
     GROUP BY r.id
-    ORDER BY r.fecha DESC
+    ORDER BY r.fecha $order
 ";
 $resultado = $conexion->query($sql);
 ?>
@@ -41,6 +45,30 @@ $resultado = $conexion->query($sql);
         .card + .card {
             margin-top: 20px;
         }
+
+        .order-btn {
+            font-size: 1.2rem;
+            cursor: pointer;
+            background-color: transparent;
+            border: 1px solid #ccc;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .order-btn:hover {
+            background-color: #e0e0e0;
+        }
+
+        .order-btn:focus {
+            outline: none;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body class="bg-light">
@@ -55,6 +83,12 @@ $resultado = $conexion->query($sql);
 
     <div class="container mt-4">
         <input type="text" class="form-control mb-4" id="buscador" placeholder="🔍 Buscar por número de orden (ej: SAN000002)">
+        
+        <!-- Botones de orden -->
+        <div class="btn-group">
+            <button class="btn btn-outline-secondary order-btn" onclick="window.location.href='ver_retiros.php?order=asc'">🔼 Orden Ascendente</button>
+            <button class="btn btn-outline-secondary order-btn" onclick="window.location.href='ver_retiros.php?order=desc'">🔽 Orden Descendente</button>
+        </div>
 
         <?php while ($fila = $resultado->fetch_assoc()): ?>
             <div class="card">
