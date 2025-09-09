@@ -5,43 +5,50 @@ if ($conexion->connect_error) {
     die("❌ Error de conexión: " . $conexion->connect_error);
 }
 
-// Consulta para obtener los datos de las órdenes de retiro
+// Consulta con detalles de productos
 $sql = "
     SELECT 
         r.numero_orden,
         r.fecha,
         u.nombre AS usuario,
-        IFNULL(SUM(d.cantidad_retirada), 0) AS total_retirado
+        IFNULL(p.Nombre_pro, 'Sin producto') AS producto,
+        IFNULL(d.cantidad_retirada, 0) AS cantidad_retirada
     FROM retiros r
     JOIN usuarios u ON r.usuario_id = u.id_use
     LEFT JOIN detalle_retiro d ON r.id = d.retiro_id
-    GROUP BY r.id
+    LEFT JOIN producto p ON d.producto_codigo = p.Codigo_pro
+    ORDER BY r.fecha DESC, r.numero_orden
 ";
+
 $resultado = $conexion->query($sql);
 
-// Configurar cabeceras para la descarga como CSV
+// Encabezados para la descarga como CSV
 header('Content-Type: text/csv; charset=utf-8');
-header('Content-Disposition: attachment; filename="ordenes_retiro.csv"');
+header('Content-Disposition: attachment; filename="ordenes_retiro_detallado.csv"');
 
 // Crear el archivo CSV en memoria
 $output = fopen('php://output', 'w');
 
-// Escribir los encabezados del archivo CSV
-fputcsv($output, ['Número de Orden', 'Fecha', 'Usuario', 'Total Retirado']);
+// Escribir encabezados
+fputcsv($output, ['Número de Orden', 'Fecha', 'Usuario', 'Producto', 'Cantidad Retirada']);
 
-// Escribir los datos de cada orden de retiro en el CSV
+// Escribir datos
 if ($resultado->num_rows > 0) {
     while ($row = $resultado->fetch_assoc()) {
-        fputcsv($output, [$row['numero_orden'], $row['fecha'], $row['usuario'], $row['total_retirado']]);
+        fputcsv($output, [
+            $row['numero_orden'],
+            $row['fecha'],
+            $row['usuario'],
+            $row['producto'],
+            $row['cantidad_retirada']
+        ]);
     }
 } else {
-    // Si no hay resultados, escribir un mensaje en el CSV
     fputcsv($output, ['No se encontraron datos']);
 }
 
-// Cerrar el archivo CSV
+// Cerrar
 fclose($output);
-
 $conexion->close();
 exit;
 ?>

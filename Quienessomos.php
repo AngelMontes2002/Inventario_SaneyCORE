@@ -10,232 +10,153 @@
    <link rel="stylesheet" href="css/responsive.css">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body class="main-layout contact_page">
+   <!-- Header -->
    <header class="bg-dark py-3">
       <div class="container d-flex justify-content-between align-items-center">
-         <a href="index.php"><img src="images/logo2.png" width="70px" height="50px" alt="Logo"></a>
+         <a href="index.php"><img src="images/logo2.png" width="70" height="50" alt="Logo"></a>
          <nav>
             <ul class="nav">
-               <li class="nav-item"><a class="nav-link text-white" href="index.php">Home</a></li>
-               <li class="nav-item"><a class="nav-link text-white" href="Quienessomos.php">Quienes somos</a></li>
-               <li class="nav-item"><a class="nav-link text-white" href="contacto.php">Contactos</a></li>
+               <li class="nav-item"><a class="nav-link text-white" href="index.php">Inicio</a></li>
+               <li class="nav-item"><a class="nav-link text-white" href="Quienessomos.php">Quiénes somos</a></li>
+               <li class="nav-item"><a class="nav-link text-white" href="contacto.php">Contacto</a></li>
                <li class="nav-item"><a class="nav-link text-warning" href="login.php">Login</a></li>
             </ul>
          </nav>
       </div>
    </header>
-<!--  INFORMACION DE NOSOTROS -->
-      <section class="banner_main"style="http://localhost/Inventario_SaneyCORE/images/banner.png">
-         <div id="banner1" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-               <li data-target="#banner1" data-slide-to="0" class="active"></li>
-               <li data-target="#banner1" data-slide-to="1"></li>
-               <li data-target="#banner1" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-               <div class="carousel-item active">
-                  <div class="container">
-                     <div class="carousel-caption">
-                        <div class="row">
-                           <div class="col-md-7">
-                              <div class="text-bg">
-                                 <h1> <span class="yellow"> Inventario</span> <br>De tus sueños</h1>
-                                 <p>It is a long established fact that a reader will be distracted by the readablecontent of a page when looking at its layout. The point of using Lorem </p>
-                                 <a class="read_more" href="contacto.php">Contacto</a><a class="read_more" href="#">M&aacute;s</a>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="carousel-item">
-                  <div class="container">
-                     <div class="carousel-caption">
-                        <div class="row">
-                           <div class="col-md-7">
-                              <div class="text-bg">
-                                 <h1> <span class="yellow"> Siempre</span> <br>Contigo</h1>
-                                 <p>It is a long established fact that a reader will be distracted by the readablecontent of a page when looking at its layout. The point of using Lorem </p>
-                                 <a class="read_more" href="contacto.php">Contacto</a><a class="read_more" href="#">M&aacute;s</a>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="carousel-item">
-                  <div class="container">
-                     <div class="carousel-caption">
-                        <div class="row">
-                           <div class="col-md-7">
-                              <div class="text-bg">
-                                 <h1> <span class="yellow"> Donde quieras</span> <br>Estaremos</h1>
-                                 <p>It is a long established fact that a reader will be distracted by the readablecontent of a page when looking at its layout. The point of using Lorem </p>
-                                 <a class="read_more" href="contacto.php">Contacto</a><a class="read_more" href="#">M&aacute;s</a>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <a class="carousel-control-prev" href="#banner1" role="button" data-slide="prev">
-            <i class="fa fa-angle-left" aria-hidden="true"></i>
-            </a>
-            <a class="carousel-control-next" href="#banner1" role="button" data-slide="next">
-            <i class="fa fa-angle-right" aria-hidden="true"></i>
-            </a>
-         </div>
-      </section>
-      <div class="service">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-12">
-                  <div class="titlepage">
-                     <h2><img src="images/heading_icon.png" alt="#"/><span class="yellow">Todo Contigo</span> <br> <span class="appp_l">Comercial & Servicios </span></h2>
-                     <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour</p>
-                  </div>
-               </div>
-            </div>
-            <div class="row">
-               <div class="col-md-12">
-                  <div class="service_box">
-                     <i><img src="images/service_icon1.png" alt="#"/></i>
-                     <div class="service_text">
-                        <h3> Productos</h3>
-                        <p>It is a long established fact that a reader will be distracted by   the readable content of<br>
-                           a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it 
-                        </p>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-md-12">
-                  <div class="service_box">
-                     <i><img src="images/service_icon2.png" alt="#"/></i>
-                     <div class="service_text">
-                        <h3>Los mejor a tu mano</h3>
-                        <p>It is a long established fact that a reader will be distracted by the readable content of <br>
-                           a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it 
-                        </p>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-md-12">
-                  <div class="service_box border_bottom1">
-                     <i><img src="images/service_icon4.png" alt="#"/></i>
-                     <div class="service_text">
-                        <h3>  Seguridas & Alertas </h3>
-                        <p>It is a long established fact that a reader will be distracted by the readable content ofa page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content he<br>
-                           re', making it 
-                        </p>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-md-12">
-                  <a class="read_more" href="#">Inicio</a>
-               </div>
-            </div>
-         </div>
-      </div>
 
-      <div id="about" class="about">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-10 offset-md-1">
-                  <div class="titlepage">
-                     <h2> <img src="images/heading_icon.png" alt="#">Conocenos</span></h2>
-                     <p>It is a long established fact that a reader will be distracted by the readable content ofa page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it </p>
-                  </div>
-               </div>
-               <div class="col-md-10 offset-md-1">
-                  <div class="about_img">
-                     <figure><img src="images/about_imglo.png" alt="#"/ style="margin: 0 310px;"></figure>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-      <div id="project" class="project">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-12">
-                  <div class="titlepage">
-                     <h2><img src="images/heading_iconw.png" alt="#"/>Productos</h2>
-                     <p>The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content  
-                     </p>
-                  </div>
-               </div>
-            </div>
-            <div class="row">
-               <div class="col-md-4">
-                  <div class="project_box before_top">
-                     <figure><img src="images/project_img1fe.jpg" alt="#"/></figure>
-                     <h3>Ferreteria</h3>
-                  </div>
-               </div>
-               <div class="col-md-4">
-                  <div class="project_box margin_top1 before_bottom">
-                     <figure class="marging_top4"><img  src="images/project_img2canasta.jpg" alt="#"/></figure>
-                     <h3 >Canasta Familiar</h3>
-                  </div>
-               </div>
-               <div class="col-md-4">
-                  <div class="project_box before_top">
-                     <figure><img src="images/project_img3tec.jpg" alt="#"/></figure>
-                     <h3>Tecnologia&oacute;n</h3>
-                  </div>
-               </div>
-               <div class="col-md-12">
-                  <a class="read_more" href="#">M&Aacute;S</a>
-               </div>
-            </div>
-         </div>
-      </div>
-                        <div class="carousel-item">
-                           <div class="container">
-                              <div class="carousel-caption">
-                                 <div class="row">
-                                    <div class="col-md-12">
-                                       <div class="testimonial_box">
-                                          <figure><img src="images/test.png" alt="#"/></figure>
-                                          <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it </p>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="carousel-item">
-                           <div class="container">
-                              <div class="carousel-caption">
-                                 <div class="row">
-                                    <div class="col-md-12">
-                                       <div class="testimonial_box">
-                                          <figure><img src="images/test.png" alt="#"/></figure>
-                                          <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it </p>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
+<!-- Banner Principal -->
+<section class="banner_main" style="background-image: url('images/banner.png'); background-size: cover;">
+   <div id="banner1" class="carousel slide" data-bs-ride="carousel">
+      <ol class="carousel-indicators">
+         <li data-bs-target="#banner1" data-bs-slide-to="0" class="active"></li>
+         <li data-bs-target="#banner1" data-bs-slide-to="1"></li>
+         <li data-bs-target="#banner1" data-bs-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+         <div class="carousel-item active">
+            <div class="container">
+               <div class="carousel-caption">
+                  <div class="row">
+                     <div class="col-md-7">
+                        <div class="text-bg">
+                           <h1><span class="yellow">Inventario</span> <br>de tus sueños</h1>
+                           <p>Contamos con un inventario robusto y adaptado a tus necesidades, garantizando la mejor calidad y servicio.</p>
+                           <a class="read_more" href="contacto.php">Contáctanos</a>
                         </div>
                      </div>
                   </div>
-                  <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-                  <i class='fa fa-angle-left'></i>
-                  </a>
-                  <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-                  <i class='fa fa-angle-right'></i>
-                  </a>
                </div>
             </div>
          </div>
       </div>
+</section>
+
+   <!-- Sección de Servicios -->
+   <div class="service py-5">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-12 text-center">
+               <h2><img src="images/heading_icon.png" alt="#"> <span class="yellow">Todo Contigo</span><br><span class="appp_l">Comercial & Servicios</span></h2>
+               <p>En Todo Contigo, combinamos calidad, innovación y compromiso para ofrecerte siempre lo mejor.</p>
+            </div>
+         </div>
+         <div class="row text-center">
+            <div class="col-md-4">
+               <div class="service_box">
+                  <img src="images/service_icon1.png" alt="#">
+                  <h3>Productos</h3>
+                  <p>Disponemos de un amplio catálogo adaptado a tus necesidades, con inventarios actualizados y entregas rápidas.</p>
+               </div>
+            </div>
+            <div class="col-md-4">
+               <div class="service_box">
+                  <img src="images/service_icon2.png" alt="#">
+                  <h3>Lo mejor a tu alcance</h3>
+                  <p>Calidad garantizada en cada producto, ofreciéndote siempre lo mejor para ti y tu familia.</p>
+               </div>
+            </div>
+            <div class="col-md-4">
+               <div class="service_box">
+                  <img src="images/service_icon4.png" alt="#">
+                  <h3>Seguridad & Alertas</h3>
+                  <p>Comprometidos con tu bienestar, ofrecemos soluciones de seguridad confiables y eficientes.</p>
+               </div>
+            </div>
+         </div>
       </div>
-      <!--  footer -->
-   <footer class="bg-dark text-white text-center py-4 mt-5">
-      <p>&copy; 2025 SANEY | Todos los derechos reservados</p>
-   </footer>
-   <script src="js/bootstrap.bundle.min.js"></script>
+   </div>
+
+   <!-- Sección Acerca de Nosotros -->
+   <div id="about" class="about py-5 bg-light">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-12 text-center">
+               <h2><img src="images/heading_icon.png" alt="#">Conócenos</h2>
+               <p>Somos una empresa que nació de la pasión por servir y crear soluciones a medida para nuestros clientes. Día a día, innovamos para brindarte lo mejor.</p>
+            </div>
+            <div class="col-md-12 text-center mt-4">
+               <figure><img src="images/about_imglo.png" class="img-fluid" alt="Conócenos"></figure>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <!-- Sección de Productos -->
+   <div id="project" class="project py-5">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-12 text-center">
+               <h2><img src="images/heading_iconw.png" alt="#">Nuestros Productos</h2>
+               <p>Te ofrecemos un portafolio diverso, adaptado a tus necesidades personales y profesionales.</p>
+            </div>
+         </div>
+         <div class="row text-center">
+            <div class="col-md-4">
+               <div class="project_box">
+                  <figure><img src="images/project_img1fe.jpg" alt="Ferretería"></figure>
+                  <h3>Ferretería</h3>
+               </div>
+            </div>
+            <div class="col-md-4">
+               <div class="project_box">
+                  <figure><img src="images/project_img2canasta.jpg" alt="Canasta Familiar"></figure>
+                  <h3>Canasta Familiar</h3>
+               </div>
+            </div>
+            <div class="col-md-4">
+               <div class="project_box">
+                  <figure><img src="images/project_img3tec.jpg" alt="Tecnología"></figure>
+                  <h3>Tecnología</h3>
+               </div>
+            </div>
+         </div>
+         <div class="text-center mt-4">
+            <a class="read_more" href="index.php">Volver al Inicio</a>
+         </div>
+      </div>
+   </div>
+   <footer>
+         <div class="footer bg-dark text-white py-4">
+            <div class="container">
+               <div class="row">
+                  <div class="col-md-6">
+                     <h3>SANEY</h3>
+                     <p>Administración eficiente de inventarios con tecnología avanzada.</p>
+                  </div>
+                  <div class="col-md-6">
+                     <h3>Contacto</h3>
+                     <ul class="list-unstyled">
+                        <li><i class="fa fa-map-marker"></i> Ubicación específica</li>
+                        <li><i class="fa fa-phone"></i> (+57) 1234567890</li>
+                        <li><i class="fa fa-envelope"></i> SaneyInven@gmail.com</li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </footer>
 </body>
 </html>
