@@ -33,7 +33,7 @@ CREATE TABLE `cliente` (
   `direccion` varchar(255) DEFAULT NULL,
   `n_identi` int(11) DEFAULT NULL,
   `correo` varchar(100) NOT NULL,
-  `numero` bigint(15) NOT NULL,
+  `numero` VARCHAR(20) NOT NULL,
   `tipoDoc` enum('CC','CE','TI','Pasaporte') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -101,6 +101,7 @@ CREATE TRIGGER `before_insert_retiro` BEFORE INSERT ON `retiros` FOR EACH ROW BE
   FROM INFORMATION_SCHEMA.TABLES
   WHERE TABLE_NAME='retiros' AND TABLE_SCHEMA=DATABASE();
   SET NEW.numero_orden = CONCAT('SAN', LPAD(next_id, 6, '0'));
+
 END
 $$
 DELIMITER ;
